@@ -14,7 +14,18 @@ public class FieldController : MonoBehaviour, IPointerClickHandler
     {
         // Handle the click event
         Debug.Log("Field clicked!");
-        Harvest();
+        //sprawdz czy rosliny ktore sa obiektami potomnymi sa gotowe do zebrania
+        foreach (Transform child in transform)
+        {
+            CropController crop = child.GetComponent<CropController>();
+            if (crop != null && crop.IsReady())
+            {
+                //jesli roslina jest gotowa do zebrania to zbierz ja
+                Harvest();
+                //usun rosliny z pola
+                Destroy(child.gameObject);
+            }
+        }
     }
     void Harvest()
     {

@@ -14,13 +14,17 @@ public class CropController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(growth < 1f)
+        if (growth < 1f)
         {
             //dodaj wzost - 0.1 na sekundê
             growth += Time.deltaTime * 0.1f; //roœnie o 0.1 na sekundê
             //growth /2 bo tymczasowy model jest 2 razy wiêkszy ni¿ roœlina
-            model.transform.localScale = new Vector3(growth/2, growth/2, growth/2);
+            model.transform.localScale = new Vector3(growth / 2, growth / 2, growth / 2);
         }
-        
+    }
+    public bool IsReady()
+    {
+        //zwraca true jeœli roœlina jest w pe³ni wyroœniêta
+        return growth >= 1f;
     }
 }
